@@ -1,0 +1,8 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+#login, .connect_db{
+     width: 500px;
+     margin-top: 10%;
+  }
