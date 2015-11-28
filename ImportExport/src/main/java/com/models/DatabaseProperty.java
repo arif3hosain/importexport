@@ -2,26 +2,33 @@
 package com.models;
 
 import java.sql.Connection;
-import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.json.JsonArray;
+import javax.json.JsonObject;
 /**
  *
  * @author Arif Mahmud
  */
 public class DatabaseProperty {
-    
+
+  
     private String dbName;
     private String port;
     private String username;
     private String password="";
     private String hostAddress;
-    private static Connection connection=null;
-    private static Statement statement=null;
-     
+   static String sql="";
+     static Connection connection=null;
+     static Statement statement=null;
+     static PreparedStatement stmt = null; 
+     static ResultSetMetaData rsmd=null;
     public String getDbName() {
         return dbName;
     }
@@ -78,7 +85,28 @@ public class DatabaseProperty {
             Logger.getLogger(DatabaseProperty.class.getName()).log(Level.SEVERE, null, ex);
         } 
         return null;
-    }//end method
+    }//end method   
     
- 
+      public static JsonObject getTable(String table) {
+          
+            
+          try {
+            sql="select * from "+table+"";
+            stmt=connection.prepareStatement(sql);
+            ResultSet rs=stmt.executeQuery();
+            rsmd=rs.getMetaData();
+            int column=rsmd.getColumnCount();
+            System.out.println("number of columns "+column);
+            for (int i = 1; i <=column; i++) {
+               
+            }
+            
+            return null;
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseProperty.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return null;
+    }
+    
 }

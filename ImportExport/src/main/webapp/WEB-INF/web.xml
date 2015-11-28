@@ -4,9 +4,17 @@
         <servlet-name>ConnectDB</servlet-name>
         <servlet-class>controller.ConnectDatabase</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SelectedTable</servlet-name>
+        <servlet-class>controller.SelectedTable</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ConnectDB</servlet-name>
         <url-pattern>/connect</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SelectedTable</servlet-name>
+        <url-pattern>/tabledata</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

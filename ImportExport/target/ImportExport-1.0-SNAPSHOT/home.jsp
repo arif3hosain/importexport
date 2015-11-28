@@ -37,8 +37,6 @@ ResultSet rs = null;
     <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
     url="jdbc:mysql://<%=property.getHostAddress()%>:<%=property.getPort()%>/<%=property.getDbName()%>"
     user="<%=property.getUsername()%>"  password="<%=pass%>"/>
-
-
  <!DOCTYPE html>
 <html>
     <head>
@@ -46,7 +44,7 @@ ResultSet rs = null;
          <%@include file="regerence/reference.html" %>
         <link href="css/simple-sidebar.css" rel="stylesheet">
         <link href="css/site.css" rel="stylesheet" type="text/css">
-
+        <script src="js/ajax.js"></script>
     </head>
     <body>
        
@@ -65,15 +63,16 @@ ResultSet rs = null;
                 </ul>
             </div>
                 <div id="import">
+                    <form accept-charset="UTF-8" name="preview">
                     <table>
                         <tr>
-                            <td>Database Name</td>
-                            <td>&nbsp;<b><%=property.getDbName()%></b></td>
+                            <td><h4>Database Name: </h4></td>
+                            <td><h4><%=property.getDbName()%></h4></td>
                         </tr>
                         <tr>
                             <td>Object Name</td>
                             <td>
-                                <select>
+                                <select name="object">
                                     <option value="">Select</option>
                                     <option value="">One</option>
                                     <option value="">Two</option>
@@ -83,8 +82,8 @@ ResultSet rs = null;
                         <tr>
                             <td>Table Name</td>
                             <td>
-                                <select>
-                                    <option value="">Select Object</option>
+                                <select id="table">
+                                    <option>Select Object</option>
                                     <%
                                         for(int i=0; i<tablelist.size(); i++){%>
                                         <option value="<%=tablelist.get(i)%>"><%=tablelist.get(i)%></option>
@@ -94,10 +93,10 @@ ResultSet rs = null;
                             </td>
                         </tr>
                         <tr>
-                            <td><button type="button" class="btn btn-info">Preview</button></td>
-                        </tr>
-                        
-                    </table>
+                            <td><button type="button" id="preview" class="btn btn-info">Preview</button></td>
+                        </tr>                       
+                        </table>
+                    </form>
                 </div>
         </div>
 <!--       <div id="wrapper">
