@@ -1,10 +1,17 @@
+<%@page import="com.models.DatabaseProperty"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    DatabaseProperty property=(DatabaseProperty)session.getAttribute("properties");
+    if(property!=null){
+        response.sendRedirect("connect.jsp");
+    }else 
+    %>
 <!DOCTYPE html>
 <html>
     <head>
          <title>Connect to your database</title>
           <%@include file="regerence/reference.html" %>
-          <link href="site.css" rel="stylesheet" type="text/css"/>
+          <link href="css/site.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
         <%@include file="regerence/navbar.html" %>
@@ -22,23 +29,23 @@
                     <div class="panel-body text-left">
                         <div class="col-sm-8 form-group">
                             <!--<label for="db_name">Database Name</label>-->
-                            <div><input class="form-control" name="databaseName" id="db_name" type="text" placeholder="Database Name" required/></div>
+                            <div><input class="form-control" name="databaseName" id="db_name" value="<%if(property!=null)out.print(property.getDbName());%>" type="text" placeholder="Database Name" required/></div>
                         </div>
                         <div class="col-sm-4 form-group">
                             <!--<label for="db_name">Port</label>-->
-                            <div><input class="form-control" name="port" id="db_port" type="text" placeholder="Port Number " required/></div>
+                            <div><input class="form-control" name="port" id="db_port" type="text"value="<%if(property!=null)out.print(property.getPort());%>" placeholder="Port Number " required/></div>
                         </div>
                         <div class="col-sm-6 form-group">
                             <!--<label for="db_username">DB Username</label>-->
-                            <div><input class=" form-control" name="username" id="db_username" type="text" placeholder="DB Username" required/></div>
+                            <div><input class=" form-control" name="username" id="db_username" value="<%if(property!=null)out.print(property.getUsername());%>" type="text" placeholder="DB Username" required/></div>
                         </div>
                         <div class="col-sm-6 form-group">
                             <!--<label for="db_password">DB Password</label>-->
-                            <div><input class=" form-control" name="password" id="db_password" type="password" placeholder="DB Password" required/></div>
+                            <div><input class=" form-control" name="password" id="db_password" value="<%if(property!=null)out.print(property.getPassword());%>" type="password" placeholder="DB Password" required/></div>
                         </div>
                         <div class="col-sm-12 form-group">
                             <!--<label for="db_host">Host Address</label>-->
-                            <div><input class="form-control" name="host" id="db_url" type="text" placeholder="Host Address" required/></div>
+                            <div><input class="form-control" name="host" id="db_url" type="text" value="<%if(property!=null)out.print(property.getHostAddress());%>" placeholder="Host Address" required/></div>
                         </div>
                         <div class="form-group">
                             <!--<label for="db_port">DB Port</label>-->

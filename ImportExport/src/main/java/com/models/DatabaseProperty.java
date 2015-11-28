@@ -2,9 +2,10 @@
 package com.models;
 
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
@@ -61,19 +62,22 @@ public class DatabaseProperty {
         this.hostAddress = hostAddress;
     }
     
-    public boolean getDBConnection(DatabaseProperty property) {
+    public Connection getDBConnection(DatabaseProperty property) {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection("jdbc:mysql://"+property.getHostAddress()+":"+property.getPort()+"/"+property.getDbName()
-            ,property.getUsername(),"");                      
+            ,property.getUsername(),"");   
+          
+            
+
             if(connection!=null){
-                 return true;
+                 return connection;
             }
         } catch (Exception ex) {
             ex.printStackTrace();
             Logger.getLogger(DatabaseProperty.class.getName()).log(Level.SEVERE, null, ex);
         } 
-        return false;
+        return null;
     }//end method
     
  
