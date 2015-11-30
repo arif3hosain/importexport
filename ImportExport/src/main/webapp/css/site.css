@@ -48,10 +48,15 @@
        margin: 10px;
        margin-left: 0;
        height: 400px;
-       background-color: background;
-       
+        
    }
    h1,h2,h3,h4,h5{
        margin: 0;
        padding: 0;
    }
+   #preview-data{
+       background-color: #9acfea;
+       padding: 20px;
+   }
+   
+   

@@ -1,8 +1,10 @@
+var columnNames;
+var rows;
+  
 $(document).ready(function(){
     $('#preview').click(function(){
         var selectedTable=$('#table').val();
-        alert(selectedTable);
-        var request;  
+         var request;  
     
     var url="tabledata?table="+selectedTable+"";  
       
@@ -26,14 +28,40 @@ $(document).ready(function(){
    
       
     function getInfo(){  
-    if(request.readyState==4){  
-                alert('hi successfull');
-    var val=request.responseText;  
-    if(val=='true'){
-        location.href="index.jsp";
-    }else{
-        document.getElementById('loginresult').innerHTML=val; 
+    if(request.readyState==4){ 
+    
+    document.getElementById('preview-data').innerHTML='';
+    var tabledata=request.responseText;
+    var obj = JSON.parse(tabledata);
+    columnNames=obj.columns;
+     rows=obj.rows; 
+      
+  
+    var content = "<table border=1  cellpadding='10'>";
+    content+='<thead><tr>';
+    for(i=0; i<columnNames.length; i++){
+        content += '<th>'+  columnNames[i] + '</th>';
     }
+     content+='</tr></thead><tbody>';
+                for (var i=0; i<rows.length; i++){
+                   var aRow=rows[i];
+                   content+='<tr>';
+                    for (var j=0; j<aRow.length; j++){
+                        content+='<td>'+aRow[j]+'</td>';
+                    }
+                    content+='</tr>';
+                }
+    
+    
+    
+    content += "</tbody><br></table>"
+     $('#preview-data').append(content);
+content='';
+columnNames='';
+rows='';
+
+                 
+    
     }   
     }  
        

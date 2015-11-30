@@ -10,8 +10,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.json.JsonArray;
 import javax.json.JsonObject;
+import org.json.JSONArray;
+import org.json.JSONObject;
 /**
  *
  * @author Arif Mahmud
@@ -87,25 +88,40 @@ public class DatabaseProperty {
         return null;
     }//end method   
     
-      public static JsonObject getTable(String table) {
-          
-            
+      public static JSONObject getTable(String table) {
+          JSONObject obj=new JSONObject();
+          JSONArray colmns=new JSONArray();
+          JSONArray rows=new JSONArray();
+
+         
           try {
             sql="select * from "+table+"";
             stmt=connection.prepareStatement(sql);
             ResultSet rs=stmt.executeQuery();
             rsmd=rs.getMetaData();
-            int column=rsmd.getColumnCount();
-            System.out.println("number of columns "+column);
-            for (int i = 1; i <=column; i++) {
-               
-            }
+            int columnCount=rsmd.getColumnCount();
+            System.out.println("number of columns "+columnCount);
+            for (int i = 1; i <=columnCount; i++) { 
+                colmns.put(rsmd.getColumnName(i));
+             }           
+            obj.put("columns", colmns);
             
-            return null;
-        } catch (SQLException ex) {
+            JSONArray row=null;
+              while (rs.next()) {       
+                    row=new JSONArray();
+                  for (int i = 1; i <= columnCount; i++) {                   
+                      row.put( rs.getObject(i));
+                      
+                   }
+                   rows.put(row);
+              }
+            obj.put("rows",rows);
+            if(obj !=null){
+                return obj;
+            }                     
+         } catch (SQLException ex) {
             Logger.getLogger(DatabaseProperty.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+        }       
         return null;
     }
     

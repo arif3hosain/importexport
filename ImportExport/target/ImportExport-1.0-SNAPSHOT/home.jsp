@@ -64,9 +64,9 @@ ResultSet rs = null;
             </div>
                 <div id="import">
                     <form accept-charset="UTF-8" name="preview">
-                    <table>
+                        <table>
                         <tr>
-                            <td><h4>Database Name: </h4></td>
+                            <td width><h4>Database Name: </h4></td>
                             <td><h4><%=property.getDbName()%></h4></td>
                         </tr>
                         <tr>
@@ -137,13 +137,7 @@ ResultSet rs = null;
          <!-- /#page-content-wrapper -->
          <div class="clearfix"></div>
          <div id="preview-data">
-             <table>
-                 <thead>
-                     <tr>
-                         
-                     </tr>
-                 </thead>
-             </table>
+             
          </div>
     <script>
     $("#menu-toggle").click(function(e) {
