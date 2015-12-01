@@ -15,7 +15,8 @@
     </head>
     <body>
         <%@include file="regerence/navbar.html" %>
-    <center>
+        <div id="content-body">
+             <center>
         <form accept-charset="UTF-8" action="connect" name="db_connect_form" method="post" role="form"  method="POST">
             <div class="container">
                 <div class="row connect_db">
@@ -29,23 +30,23 @@
                     <div class="panel-body text-left">
                         <div class="col-sm-8 form-group">
                             <!--<label for="db_name">Database Name</label>-->
-                            <div><input class="form-control" name="databaseName" id="db_name" value="<%if(property!=null)out.print(property.getDbName());%>" type="text" placeholder="Database Name" required/></div>
+                            <div><input class="form-control" name="databaseName" id="db_name" value="<%if(property!=null)out.print(property.getDbName());else{out.print("olms");}%>" type="text" placeholder="Database Name" required/></div>
                         </div>
                         <div class="col-sm-4 form-group">
                             <!--<label for="db_name">Port</label>-->
-                            <div><input class="form-control" name="port" id="db_port" type="text"value="<%if(property!=null)out.print(property.getPort());%>" placeholder="Port Number " required/></div>
+                            <div><input class="form-control" name="port" id="db_port" type="text"value="<%if(property!=null)out.print(property.getPort());else{out.print("3306");}%>" placeholder="Port Number " required/></div>
                         </div>
                         <div class="col-sm-6 form-group">
                             <!--<label for="db_username">DB Username</label>-->
-                            <div><input class=" form-control" name="username" id="db_username" value="<%if(property!=null)out.print(property.getUsername());%>" type="text" placeholder="DB Username" required/></div>
+                            <div><input class=" form-control" name="username" id="db_username" value="<%if(property!=null)out.print(property.getUsername());else{out.print("root");}%>" type="text" placeholder="DB Username" required/></div>
                         </div>
                         <div class="col-sm-6 form-group">
                             <!--<label for="db_password">DB Password</label>-->
-                            <div><input class=" form-control" name="password" id="db_password" value="<%if(property!=null)out.print(property.getPassword());%>" type="password" placeholder="DB Password" required/></div>
+                            <div><input class=" form-control" name="password" id="db_password" value="<%if(property!=null)out.print(property.getPassword());else{out.print("root");}%>" type="password" placeholder="DB Password" required/></div>
                         </div>
                         <div class="col-sm-12 form-group">
                             <!--<label for="db_host">Host Address</label>-->
-                            <div><input class="form-control" name="host" id="db_url" type="text" value="<%if(property!=null)out.print(property.getHostAddress());%>" placeholder="Host Address" required/></div>
+                            <div><input class="form-control" name="host" id="db_url" type="text" value="<%if(property!=null)out.print(property.getHostAddress());else{out.print("localhost");}%>" placeholder="Host Address" required/></div>
                         </div>
                         <div class="form-group">
                             <!--<label for="db_port">DB Port</label>-->
@@ -59,5 +60,8 @@
             </div><!--container-->
         </form>
     </center>
-    </body>
+         </div><!--content-body-->
+   
+  
+</body>
 </html>

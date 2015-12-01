@@ -67,4 +67,10 @@ rows='';
        
    
     });
+
+$('#export').click(function(){
+       document.execCommand("SaveAs",true," \\172.16.2.1\ELSTest\Projects\QTS\Q0002\pdfviewer_src.zip");
 });
+
+});
+ 

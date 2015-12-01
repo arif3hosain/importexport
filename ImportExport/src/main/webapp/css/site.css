@@ -2,6 +2,14 @@
     padding: 0;
     margin: 0;
 }
+#content-body{
+    max-width: 1200px;
+     margin: 0 auto;
+    
+}
+#export-table td{
+    line-height: 30px;
+}
 #login, .connect_db{
      width: 500px;
      margin-top: 10%;

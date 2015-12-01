@@ -49,6 +49,7 @@ ResultSet rs = null;
     <body>
        
         <%@include file="regerence/navbar.html" %>
+         <div id="content-body">
         <div class="container-fluid">
             <div id="table-nav">
                 <ul>
@@ -64,7 +65,7 @@ ResultSet rs = null;
             </div>
                 <div id="import">
                     <form accept-charset="UTF-8" name="preview">
-                        <table>
+                        <table id="export-table">
                         <tr>
                             <td width><h4>Database Name: </h4></td>
                             <td><h4><%=property.getDbName()%></h4></td>
@@ -78,6 +79,7 @@ ResultSet rs = null;
                                     <option value="">Two</option>
                                  </select>
                             </td>
+                        
                         </tr>
                         <tr>
                             <td>Table Name</td>
@@ -93,7 +95,12 @@ ResultSet rs = null;
                             </td>
                         </tr>
                         <tr>
-                            <td><button type="button" id="preview" class="btn btn-info">Preview</button></td>
+                            <td>Export Type</td>
+                            <td><input type="radio" name="exportType" value="csv" id="byCSV" />CSV <input type="radio" name="exportType" value="excel" id="byXLSX" />Excel</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><button type="button" id="preview" class="btn btn-info btn-sm">Preview</button> &nbsp;<button  type="button" id="export" class="btn btn-info btn-sm" id="export">Export</button>&nbsp;<button  type="button" id="export" class="btn btn-info btn-sm" id="export">Import</button></td>
                         </tr>                       
                         </table>
                     </form>
@@ -139,11 +146,13 @@ ResultSet rs = null;
          <div id="preview-data">
              
          </div>
+         </div>
     <script>
     $("#menu-toggle").click(function(e) {
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
     });
+    
     </script>
     </body>
 </html>
